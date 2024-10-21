@@ -39,13 +39,13 @@ const clashConfigKey = "clash_config";
 const configKey = "config";
 const listItemPadding = EdgeInsets.symmetric(horizontal: 16);
 const double dialogCommonWidth = 300;
-const repository = "chen08209/FlClash";
+const repository = "balala2oo8/FlClash";
 const defaultExternalController = "127.0.0.1:9090";
 const maxMobileWidth = 600;
 const maxLaptopWidth = 840;
 const geodataLoaderMemconservative = "memconservative";
 const geodataLoaderStandard = "standard";
-const defaultTestUrl = "https://www.gstatic.com/generate_204";
+const defaultTestUrl = "http://www.gstatic.com/generate_204";
 final filter = ImageFilter.blur(
   sigmaX: 5,
   sigmaY: 5,

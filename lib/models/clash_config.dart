@@ -155,7 +155,7 @@ class ClashConfig extends ChangeNotifier {
         _tcpConcurrent = false,
         _logLevel = LogLevel.info,
         _tun = const Tun(),
-        _unifiedDelay = false,
+        _unifiedDelay = true,
         _geodataLoader = geodataLoaderMemconservative,
         _externalController = '',
         _keepAliveInterval = defaultKeepAliveInterval,
