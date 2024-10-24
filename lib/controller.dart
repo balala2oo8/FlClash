@@ -611,7 +611,7 @@ class AppController {
     required bool isStart,
     required Brightness? brightness,
   }) async {
-    await trayManager.destroy();
+    // await trayManager.destroy();
     await trayManager.setIcon(
       other.getTrayIconPath(
         isStart: isStart,

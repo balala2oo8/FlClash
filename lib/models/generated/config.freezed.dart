@@ -293,7 +293,7 @@ class _$AppSettingImpl implements _AppSetting {
       this.testUrl = "http://127.0.0.1/generate_204",
       //this.testUrl = defaultTestUrl,
       this.isAnimateToPage = true,
-      this.autoCheckUpdate = true,
+      this.autoCheckUpdate = false,
       this.showLabel = false,
       this.disclaimerAccepted = false,
       this.minimizeOnExit = true,
