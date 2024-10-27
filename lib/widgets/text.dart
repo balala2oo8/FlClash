@@ -1,3 +1,4 @@
+import 'package:fl_clash/enum/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:emoji_regex/emoji_regex.dart';
 
@@ -62,7 +63,7 @@ class EmojiText extends StatelessWidget {
         TextSpan(
           text:match.group(0),
           style: style?.copyWith(
-            fontFamily: "Twemoji",
+            fontFamily: FontFamily.twEmoji.value,
           ),
         ),
       );

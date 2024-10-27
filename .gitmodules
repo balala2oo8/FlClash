@@ -4,5 +4,5 @@
 	branch = FlClash-Alpha
 [submodule "plugins/flutter_distributor"]
 	path = plugins/flutter_distributor
-	url = git@github.com:chen08209/flutter_distributor.git
+	url = git@github.com:balala2oo8/flutter_distributor.git
 	branch = FlClash
