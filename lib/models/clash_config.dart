@@ -149,7 +149,7 @@ class ClashConfig extends ChangeNotifier {
   ClashConfig()
       : _mixedPort = defaultMixedPort,
         _mode = Mode.rule,
-        _ipv6 = false,
+        _ipv6 = true,
         _findProcessMode = FindProcessMode.off,
         _allowLan = false,
         _tcpConcurrent = false,
@@ -370,5 +370,10 @@ class ClashConfig extends ChangeNotifier {
 
   factory ClashConfig.fromJson(Map<String, dynamic> json) {
     return _$ClashConfigFromJson(json);
+  }
+
+  @override
+  String toString() {
+    return 'ClashConfig{_mixedPort: $_mixedPort, _allowLan: $_allowLan, _ipv6: $_ipv6, _geodataLoader: $_geodataLoader, _logLevel: $_logLevel, _externalController: $_externalController, _mode: $_mode, _findProcessMode: $_findProcessMode, _keepAliveInterval: $_keepAliveInterval, _unifiedDelay: $_unifiedDelay, _tcpConcurrent: $_tcpConcurrent, _tun: $_tun, _dns: $_dns, _geoXUrl: $_geoXUrl, _rules: $_rules, _globalRealUa: $_globalRealUa, _hosts: $_hosts}';
   }
 }

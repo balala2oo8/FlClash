@@ -1,4 +1,46 @@
-## v0.8.63
+## v0.8.67
+
+- Add android shortcuts
+
+- Fix init params issues
+
+- Fix dynamic color issues
+
+- Optimize navigator animate
+
+- Optimize window init
+
+- Optimize fab
+
+- Optimize save
+
+## v0.8.66
+
+- Fix the collapse issues
+
+- Add fontFamily options
+
+## v0.8.65
+
+- Update core version
+
+- Update flutter version
+
+- Optimize ip check
+
+- Optimize url-test
+
+## v0.8.64
+
+- Update release message
+
+- Init auto gen changelog
+
+- Fix windows tray issues
+
+- Fix urltest issues
+
+- Add auto changelog
 
 - Fix windows admin auto launch issues
 
@@ -9,8 +51,6 @@
 - Optimize android immersion display
 
 - Fix some issues
-
-## v0.8.62
 
 - Optimize ip detection
 
@@ -27,12 +67,6 @@
 - Fix some issues
 
 - Update readme
-
-- Update README.md 2
-
-- Update README.md 2
-
-- Update README.md
 
 ## v0.8.60
 
