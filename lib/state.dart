@@ -303,6 +303,7 @@ class GlobalState {
   }
 
   Future _updateSystemTray({
+    required bool isStart,
     required Brightness? brightness,
     bool force = false,
   }) async {
@@ -314,6 +315,7 @@ class GlobalState {
     }
     await trayManager.setIcon(
       other.getTrayIconPath(
+        isStart:isStart,
         brightness: brightness ??
             WidgetsBinding.instance.platformDispatcher.platformBrightness,
       ),
@@ -335,6 +337,7 @@ class GlobalState {
   }) async {
     if (!Platform.isLinux) {
       await _updateSystemTray(
+        isStart: appFlowingState.isStart,
         brightness: appState.brightness,
         force: focus,
       );
@@ -422,6 +425,7 @@ class GlobalState {
     await trayManager.setContextMenu(menu);
     if (Platform.isLinux) {
       await _updateSystemTray(
+        isStart: appFlowingState.isStart,
         brightness: appState.brightness,
         force: focus,
       );
