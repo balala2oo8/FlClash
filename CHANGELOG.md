@@ -495,7 +495,8 @@
 
 ## v0.8.12
 
-- Fix the problem that the download of remote resources failed after GeodataMode was turned on, which caused the application to flash back.
+- Fix the problem that the download of remote resources failed after GeodataMode was turned on, which caused the
+  application to flash back.
 
 - Fix edit profile error
 
@@ -661,32 +662,3 @@
 - update mobile_scanner
 
 - Initial commit
-
-## v0.8.68
-
-- Fix windows tray issues
-
-- Support setting bypassDomain
-
-- Update flutter version
-
-- Fix android service issues
-
-- Fix macos dock exit button issues
-
-- Add route address setting
-
-- Optimize provider view
-
-- Update changelog
-
-- Update CHANGELOG.md
-
-## v0.8.68
-
-- merge
-
-## v0.8.68
-
-- merge
-

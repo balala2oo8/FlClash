@@ -4,12 +4,14 @@ import 'package:fl_clash/common/common.dart';
 import 'package:fl_clash/models/config.dart';
 import 'package:flutter/material.dart';
 import 'package:window_manager/window_manager.dart';
-import 'package:windows_single_instance/windows_single_instance.dart';
 
 class Window {
   init(WindowProps props, int version) async {
+    final acquire = await singleInstanceLock.acquire();
+    if (!acquire) {
+      exit(0);
+    }
     if (Platform.isWindows) {
-      await WindowsSingleInstance.ensureSingleInstance([], "FlClash");
       protocol.register("clash");
       protocol.register("clashmeta");
       protocol.register("flclash");
@@ -19,13 +21,6 @@ class Window {
       size: Size(props.width, props.height),
       minimumSize: const Size(380, 500),
     );
-    if (props.left != null || props.top != null) {
-      await windowManager.setPosition(
-        Offset(props.left ?? 0, props.top ?? 0),
-      );
-    } else {
-      await windowManager.setAlignment(Alignment.center);
-    }
     if (!Platform.isMacOS || version > 10) {
       await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
     }
