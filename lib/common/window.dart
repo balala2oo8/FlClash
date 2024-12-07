@@ -21,6 +21,13 @@ class Window {
       size: Size(props.width, props.height),
       minimumSize: const Size(380, 500),
     );
+    if (props.left != null || props.top != null) {
+      await windowManager.setPosition(
+        Offset(props.left ?? 0, props.top ?? 0),
+      );
+    } else {
+      await windowManager.setAlignment(Alignment.center);
+    }
     if (!Platform.isMacOS || version > 10) {
       await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
     }
