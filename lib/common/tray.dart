@@ -81,7 +81,7 @@ class Tray {
         MenuItem.checkbox(
           label: Intl.message(mode.name),
           onClick: (_) {
-            globalState.appController.clashConfig.mode = mode;
+            globalState.appController.changeMode(mode);
           },
           checked: mode == clashConfig.mode,
         ),
