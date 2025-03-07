@@ -26,13 +26,9 @@ proxyDelayTest(Proxy proxy, [String? testUrl]) async {
   final url = state.testUrl.getSafeValue(
     appController.getRealTestUrl(testUrl),
   );
-  appController.setDelay(
-    Delay(
-      url: url,
-      name: state.proxyName,
-      value: 0,
-    ),
-  );
+  if (state.proxyName.isEmpty) {
+    return;
+  }
   appController.setDelay(
     await clashCore.getDelay(
       url,
@@ -51,6 +47,9 @@ delayTest(List<Proxy> proxies, [String? testUrl]) async {
       appController.getRealTestUrl(testUrl),
     );
     final name = state.proxyName;
+    if (name.isEmpty) {
+      return;
+    }
     appController.setDelay(
       Delay(
         url: url,
