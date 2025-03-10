@@ -30,6 +30,13 @@ proxyDelayTest(Proxy proxy, [String? testUrl]) async {
     return;
   }
   appController.setDelay(
+    Delay(
+      url: url,
+      name: state.proxyName,
+      value: 0,
+    ),
+  );
+  appController.setDelay(
     await clashCore.getDelay(
       url,
       state.proxyName,
