@@ -117,7 +117,7 @@ _$DnsImpl _$$DnsImplFromJson(Map<String, dynamic> json) => _$DnsImpl(
       useHosts: json['use-hosts'] as bool? ?? true,
       useSystemHosts: json['use-system-hosts'] as bool? ?? true,
       respectRules: json['respect-rules'] as bool? ?? false,
-      ipv6: json['ipv6'] as bool? ?? false,
+      ipv6: json['ipv6'] as bool? ?? true,
       defaultNameserver: (json['default-nameserver'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??

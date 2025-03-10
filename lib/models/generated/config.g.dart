@@ -120,7 +120,7 @@ _$VpnPropsImpl _$$VpnPropsImplFromJson(Map<String, dynamic> json) =>
     _$VpnPropsImpl(
       enable: json['enable'] as bool? ?? true,
       systemProxy: json['systemProxy'] as bool? ?? true,
-      ipv6: json['ipv6'] as bool? ?? false,
+      ipv6: json['ipv6'] as bool? ?? true,
       allowBypass: json['allowBypass'] as bool? ?? true,
       accessControl: json['accessControl'] == null
           ? defaultAccessControl
