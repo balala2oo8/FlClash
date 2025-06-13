@@ -26,6 +26,7 @@ class Tray {
     }
     await trayManager.setIcon(
       utils.getTrayIconPath(
+        isStart: globalState.isStart,
         brightness: brightness ??
             WidgetsBinding.instance.platformDispatcher.platformBrightness,
       ),
