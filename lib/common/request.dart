@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
@@ -18,7 +19,7 @@ class Request {
     _dio = Dio(
       BaseOptions(
         headers: {
-          "User-Agent": browserUa,
+          'User-Agent': browserUa,
         },
       ),
     );
@@ -68,7 +69,7 @@ class Request {
 
   Future<Map<String, dynamic>?> checkForUpdate() async {
     final response = await _dio.get(
-      "https://api.github.com/repos/$repository/releases/latest",
+      'https://api.github.com/repos/$repository/releases/latest',
       options: Options(
         responseType: ResponseType.json,
       ),
@@ -84,50 +85,55 @@ class Request {
   }
 
   final Map<String, IpInfo Function(Map<String, dynamic>)> _ipInfoSources = {
-    "https://ipwho.is/": IpInfo.fromIpwhoIsJson,
-    "https://api.ip.sb/geoip/": IpInfo.fromIpSbJson,
-    "https://ipapi.co/json/": IpInfo.fromIpApiCoJson,
-    "https://ipinfo.io/json/": IpInfo.fromIpInfoIoJson,
+    'https://ipwho.is/': IpInfo.fromIpwhoIsJson,
+    'https://api.ip.sb/geoip/': IpInfo.fromIpSbJson,
+    'https://ipapi.co/json/': IpInfo.fromIpApiCoJson,
+    'https://ipinfo.io/json/': IpInfo.fromIpInfoIoJson,
   };
 
-  Future<IpInfo?> checkIp({CancelToken? cancelToken}) async {
-    for (final source in _ipInfoSources.entries) {
-      try {
-        final response = await Dio()
-            .get<Map<String, dynamic>>(
-              source.key,
-              cancelToken: cancelToken,
-              options: Options(
-                responseType: ResponseType.json,
-              ),
-            )
-            .timeout(
-              Duration(
-                seconds: 30,
-              ),
-            );
-        if (response.statusCode != 200 || response.data == null) {
-          continue;
-        }
-        if (response.data == null) {
-          continue;
-        }
-        return source.value(response.data!);
-      } catch (e) {
-        commonPrint.log("checkIp error ===> $e");
-        if (e is DioException && e.type == DioExceptionType.cancel) {
-          throw "cancelled";
+  Future<Result<IpInfo?>> checkIp({CancelToken? cancelToken}) async {
+    var failureCount = 0;
+    final futures = _ipInfoSources.entries.map((source) async {
+      final Completer<Result<IpInfo?>> completer = Completer();
+      handleFailRes() {
+        if (!completer.isCompleted && failureCount == _ipInfoSources.length) {
+          completer.complete(Result.success(null));
         }
       }
-    }
-    return null;
+
+      final future = Dio().get<Map<String, dynamic>>(
+        source.key,
+        cancelToken: cancelToken,
+        options: Options(
+          responseType: ResponseType.json,
+        ),
+      );
+      future.then((res) {
+        if (res.statusCode == HttpStatus.ok && res.data != null) {
+          completer.complete(Result.success(source.value(res.data!)));
+        } else {
+          failureCount++;
+          handleFailRes();
+        }
+      }).catchError((e) {
+        failureCount++;
+        if (e is DioException && e.type == DioExceptionType.cancel) {
+          completer.complete(Result.error('cancelled'));
+        }
+        handleFailRes();
+      });
+      return completer.future;
+    });
+    final res = await Future.any(futures);
+    cancelToken?.cancel();
+    return res;
   }
 
   Future<bool> pingHelper() async {
     try {
       final response = await _dio
           .get(
-            "http://$localhost:$helperPort/ping",
+            'http://$localhost:$helperPort/ping',
             options: Options(
               responseType: ResponseType.plain,
             ),
@@ -150,10 +156,10 @@ class Request {
     try {
       final response = await _dio
           .post(
-            "http://$localhost:$helperPort/start",
+            'http://$localhost:$helperPort/start',
             data: json.encode({
-              "path": appPath.corePath,
-              "arg": arg,
+              'path': appPath.corePath,
+              'arg': arg,
             }),
             options: Options(
               responseType: ResponseType.plain,
@@ -178,7 +184,7 @@ class Request {
     try {
       final response = await _dio
           .post(
-            "http://$localhost:$helperPort/stop",
+            'http://$localhost:$helperPort/stop',
             options: Options(
               responseType: ResponseType.plain,
             ),

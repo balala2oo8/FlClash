@@ -23,11 +23,11 @@ class Utils {
     final random = Random();
     final randomStr =
         String.fromCharCodes(List.generate(8, (_) => random.nextInt(26) + 97));
-    return "$timestamp$randomStr";
+    return '$timestamp$randomStr';
   }
 
   String getDateStringLast2(int value) {
-    var valueRaw = "0$value";
+    var valueRaw = '0$value';
     return valueRaw.substring(
       valueRaw.length - 2,
     );
@@ -73,7 +73,7 @@ class Utils {
     var inMinutes = difference.inMinutes;
     var inSeconds = difference.inSeconds;
 
-    return "${getDateStringLast2(inHours)}:${getDateStringLast2(inMinutes)}:${getDateStringLast2(inSeconds)}";
+    return '${getDateStringLast2(inHours)}:${getDateStringLast2(inMinutes)}:${getDateStringLast2(inSeconds)}';
   }
 
   String getTimeText(int? timeStamp) {
@@ -83,17 +83,17 @@ class Utils {
     final diff = timeStamp / 1000;
     final inHours = (diff / 3600).floor();
     if (inHours > 99) {
-      return "99:59:59";
+      return '99:59:59';
     }
     final inMinutes = (diff / 60 % 60).floor();
     final inSeconds = (diff % 60).floor();
 
-    return "${getDateStringLast2(inHours)}:${getDateStringLast2(inMinutes)}:${getDateStringLast2(inSeconds)}";
+    return '${getDateStringLast2(inHours)}:${getDateStringLast2(inMinutes)}:${getDateStringLast2(inSeconds)}';
   }
 
   Locale? getLocaleForString(String? localString) {
     if (localString == null) return null;
-    var localSplit = localString.split("_");
+    var localSplit = localString.split('_');
     if (localSplit.length == 1) {
       return Locale(localSplit[0]);
     }
@@ -137,7 +137,7 @@ class Utils {
       final number = int.parse(match[1] ?? '0') + 1;
       return label.replaceFirst(reg, '($number)', label.length - 3 - 1);
     } else {
-      return "$label(1)";
+      return '$label(1)';
     }
   }
 
@@ -145,8 +145,8 @@ class Utils {
     required bool isStart,
     required Brightness brightness,
   }) {
-    if (Platform.isMacOS) {
-      return "assets/images/icon_white.png";
+    if (system.isMacOS) {
+      return 'assets/images/icon_white.png';
     }
     final suffix = Platform.isWindows ? "ico" : "png";
      if (isStart && Platform.isWindows) {
@@ -184,7 +184,7 @@ class Utils {
   String getPinyin(String value) {
     return value.isNotEmpty
         ? PinyinHelper.getFirstWordPinyin(value.substring(0, 1))
-        : "";
+        : '';
   }
 
   String? getFileNameForDisposition(String? disposition) {
@@ -192,7 +192,7 @@ class Utils {
     final parseValue = HeaderValue.parse(disposition);
     final parameters = parseValue.parameters;
     final fileNamePointKey = parameters.keys
-        .firstWhere((key) => key == "filename*", orElse: () => "");
+        .firstWhere((key) => key == 'filename*', orElse: () => '');
     if (fileNamePointKey.isNotEmpty) {
       final res = parameters[fileNamePointKey]?.split("''") ?? [];
       if (res.length >= 2) {
@@ -200,7 +200,7 @@ class Utils {
       }
     }
     final fileNameKey = parameters.keys
-        .firstWhere((key) => key == "filename", orElse: () => "");
+        .firstWhere((key) => key == 'filename', orElse: () => '');
     if (fileNameKey.isEmpty) return null;
     return parameters[fileNameKey];
   }
@@ -253,7 +253,7 @@ class Utils {
     900,
   ];
 
-  _createPrimarySwatch(Color color) {
+  MaterialColor _createPrimarySwatch(Color color) {
     final Map<int, Color> swatch = <int, Color>{};
     final int a = color.alpha8bit;
     final int r = color.red8bit;
@@ -297,11 +297,11 @@ class Utils {
   }
 
   String getBackupFileName() {
-    return "${appName}_backup_${DateTime.now().show}.zip";
+    return '${appName}_backup_${DateTime.now().show}.zip';
   }
 
   String get logFile {
-    return "${appName}_${DateTime.now().show}.log";
+    return '${appName}_${DateTime.now().show}.log';
   }
 
   Future<String?> getLocalIpAddress() async {
@@ -327,11 +327,11 @@ class Utils {
       });
       return addresses.first.address;
     }
-    return "";
+    return '';
   }
 
   SingleActivator controlSingleActivator(LogicalKeyboardKey trigger) {
-    final control = Platform.isMacOS ? false : true;
+    final control = system.isMacOS ? false : true;
     return SingleActivator(
       trigger,
       control: control,

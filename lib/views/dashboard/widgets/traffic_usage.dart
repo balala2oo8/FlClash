@@ -138,7 +138,7 @@ class TrafficUsage extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             color: primaryColor,
                                             borderRadius:
-                                                BorderRadius.circular(2),
+                                                BorderRadius.circular(3),
                                           ),
                                         ),
                                         SizedBox(
@@ -164,7 +164,7 @@ class TrafficUsage extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             color: secondaryColor,
                                             borderRadius:
-                                                BorderRadius.circular(2),
+                                                BorderRadius.circular(3),
                                           ),
                                         ),
                                         SizedBox(

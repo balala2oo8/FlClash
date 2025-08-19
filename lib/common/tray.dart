@@ -11,6 +11,7 @@ import 'package:tray_manager/tray_manager.dart';
 
 import 'app_localizations.dart';
 import 'constant.dart';
+import 'system.dart';
 import 'window.dart';
 
 class Tray {
@@ -18,7 +19,7 @@ class Tray {
     required Brightness? brightness,
     bool force = false,
   }) async {
-    if (Platform.isAndroid) {
+    if (system.isAndroid) {
       return;
     }
     if (Platform.isLinux || force) {
@@ -39,11 +40,11 @@ class Tray {
     }
   }
 
-  update({
+  Future<void> update({
     required TrayState trayState,
     bool focus = false,
   }) async {
-    if (Platform.isAndroid) {
+    if (system.isAndroid) {
       return;
     }
     if (!Platform.isLinux) {
@@ -81,7 +82,7 @@ class Tray {
       );
     }
     menuItems.add(MenuItem.separator());
-    if (Platform.isMacOS) {
+    if (system.isMacOS) {
       for (final group in trayState.groups) {
         List<MenuItem> subMenuItems = [];
         for (final proxy in group.all) {
@@ -170,8 +171,8 @@ class Tray {
     }
   }
 
-  updateTrayTitle([Traffic? traffic]) async {
-    // if (!Platform.isMacOS) {
+  Future<void> updateTrayTitle([Traffic? traffic]) async {
+    // if (!system.isMacOS) {
     //   return;
     // }
     // if (traffic == null) {
@@ -184,11 +185,10 @@ class Tray {
   }
 
   Future<void> _copyEnv(int port) async {
-    final url = "http://127.0.0.1:$port";
+    final url = 'http://127.0.0.1:$port';
 
-    final cmdline = Platform.isWindows
-        ? "set \$env:all_proxy=$url"
-        : "export all_proxy=$url";
+    final cmdline =
+        system.isWindows ? 'set \$env:all_proxy=$url' : 'export all_proxy=$url';
 
     await Clipboard.setData(
       ClipboardData(
