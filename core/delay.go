@@ -11,7 +11,7 @@ import (
 
 const (
 	delayTestConcurrency    = 50
-	defaultTestURL          = "https://www.gstatic.com/generate_204"
+	defaultTestURL          = "http://cp.cloudflare.com/generate_204"
 	defaultDelayTestTimeout = 5 * time.Second
 )
 

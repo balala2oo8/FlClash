@@ -17,8 +17,8 @@ import (
 func TestDefaultSetupParams(t *testing.T) {
 	params := defaultSetupParams()
 
-	if params.TestURL != "https://www.gstatic.com/generate_204" {
-		t.Errorf("TestURL = %s, want the gstatic generate_204 probe", params.TestURL)
+	if params.TestURL != "http://cp.cloudflare.com/generate_204" {
+		t.Errorf("TestURL = %s, want the cloudflare generate_204 probe", params.TestURL)
 	}
 	if params.SelectedMap == nil {
 		t.Error("SelectedMap must be a usable map so decoding can merge into it")
@@ -32,7 +32,7 @@ func TestDefaultSetupParamsSurvivesPartialDecode(t *testing.T) {
 		t.Fatalf("decode error: %v", err)
 	}
 
-	if params.TestURL != "https://www.gstatic.com/generate_204" {
+	if params.TestURL != "http://cp.cloudflare.com/generate_204" {
 		t.Errorf("TestURL = %s, want the default to survive a partial payload", params.TestURL)
 	}
 	if params.SelectedMap["GLOBAL"] != "auto" {

@@ -1275,7 +1275,7 @@ const _proxy = YamlSchema.map(_proxyCommon, variants: _proxyVariants);
 
 const _healthCheck = YamlSchema.map({
   'enable': _bool,
-  'url': YamlSchema.scalar(['https://www.gstatic.com/generate_204']),
+  'url': YamlSchema.scalar(['http://cp.cloudflare.com/generate_204']),
   'interval': _str,
   'timeout': _str,
   'lazy': _bool,
@@ -1288,7 +1288,7 @@ const _proxyGroupFields = {
   'proxies': YamlSchema.list(_policy),
   'use': YamlSchema.list(YamlSchema.of(YamlScalar.proxyProvider)),
   'use-position': YamlSchema.dict(_str),
-  'url': YamlSchema.scalar(['https://www.gstatic.com/generate_204']),
+  'url': YamlSchema.scalar(['http://cp.cloudflare.com/generate_204']),
   'interval': _str,
   'lazy': _bool,
   'timeout': _str,

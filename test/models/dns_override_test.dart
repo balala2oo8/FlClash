@@ -374,7 +374,7 @@ proxy-server-nameserver-policy:
       expect(options.definition, {
         'health-check': {
           'enable': true,
-          'url': 'https://www.gstatic.com/generate_204',
+          'url': 'http://cp.cloudflare.com/generate_204',
           'timeout': 3000,
           'lazy': false,
         },
@@ -394,7 +394,7 @@ proxy-server-nameserver-policy:
       expect(options.copyWith.healthCheck(timeout: 3000).definition, {
         'health-check': {
           'enable': true,
-          'url': 'https://www.gstatic.com/generate_204',
+          'url': 'http://cp.cloudflare.com/generate_204',
           'timeout': 3000,
         },
       });
