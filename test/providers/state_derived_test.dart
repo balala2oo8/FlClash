@@ -645,7 +645,7 @@ void main() {
         .setDelay(
           const Delay(
             name: 'Leaf',
-            url: 'https://www.gstatic.com/generate_204',
+            url: 'http://cp.cloudflare.com/generate_204',
             value: 42,
           ),
         );
