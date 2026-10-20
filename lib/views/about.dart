@@ -90,8 +90,8 @@ class AboutView extends ConsumerWidget {
               _buildLinkItem(
                 glyph: AppGlyphs.code,
                 title: appLocalizations.project,
-                url: 'https://github.com/$repository',
-                label: 'github.com/$repository',
+                url: 'https://github.com/chen08209/FlClash',
+                label: 'github.com/chen08209/FlClash',
               ),
               _buildLinkItem(
                 glyph: AppGlyphs.cpu,
@@ -99,12 +99,12 @@ class AboutView extends ConsumerWidget {
                 url: 'https://github.com/chen08209/Clash.Meta/tree/FlClash',
                 label: 'github.com/chen08209/Clash.Meta',
               ),
-              _buildLinkItem(
-                glyph: AppGlyphs.send,
-                title: 'Telegram',
-                url: 'https://t.me/FlClash',
-                label: 't.me/FlClash',
-              ),
+              // _buildLinkItem(
+              //   glyph: AppGlyphs.send,
+              //   title: 'Telegram',
+              //   url: 'https://t.me/FlClash',
+              //   label: 't.me/FlClash',
+              // ),
             ],
           ),
           generateSection(
