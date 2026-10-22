@@ -67,7 +67,10 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
       backAction: editing ? () => _setEditing(false) : null,
       actions: [
         if (!editing && cloudAccountAvailable) const CloudAccountButton(),
-        if (!editing && coreLib == null) const CoreStatusButton(),
+        if (!editing &&
+            coreLib == null &&
+            (!cloudAccountAvailable || !ViewScope.isMobileOf(context)))
+          const CoreStatusButton(),
       ],
       confirmationAction: editing
           ? IconButtonData(
