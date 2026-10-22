@@ -1005,6 +1005,106 @@ class AppLocalizations {
     return Intl.message('Account', name: 'account', desc: '', args: []);
   }
 
+  /// `Login`
+  String get login {
+    return Intl.message('Login', name: 'login', desc: '', args: []);
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message('Email', name: 'email', desc: '', args: []);
+  }
+
+  /// `Cloud subscription`
+  String get cloudSubscription {
+    return Intl.message(
+      'Cloud subscription',
+      name: 'cloudSubscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sync now`
+  String get syncNow {
+    return Intl.message('Sync now', name: 'syncNow', desc: '', args: []);
+  }
+
+  /// `Subscription synced`
+  String get syncSuccess {
+    return Intl.message(
+      'Subscription synced',
+      name: 'syncSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login failed`
+  String get loginFailed {
+    return Intl.message(
+      'Login failed',
+      name: 'loginFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login expired`
+  String get loginExpired {
+    return Intl.message(
+      'Login expired',
+      name: 'loginExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The subscription can still be updated`
+  String get loginExpiredDesc {
+    return Intl.message(
+      'The subscription can still be updated',
+      name: 'loginExpiredDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Re-login`
+  String get relogin {
+    return Intl.message('Re-login', name: 'relogin', desc: '', args: []);
+  }
+
+  /// `May be out of date`
+  String get maybeStale {
+    return Intl.message(
+      'May be out of date',
+      name: 'maybeStale',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not signed in`
+  String get notLoggedIn {
+    return Intl.message(
+      'Not signed in',
+      name: 'notLoggedIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Signed in`
+  String get loggedIn {
+    return Intl.message('Signed in', name: 'loggedIn', desc: '', args: []);
+  }
+
   /// `Backup`
   String get backup {
     return Intl.message('Backup', name: 'backup', desc: '', args: []);

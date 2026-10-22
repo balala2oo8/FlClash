@@ -171,6 +171,54 @@ class Preferences {
     await sharedPreferencesIns?.setString(bootRecordKey, json.encode(record));
   }
 
+  Future<Map<String, Object?>?> getCloudSession() async {
+    try {
+      final sharedPreferencesIns = await _store.value;
+      final raw = sharedPreferencesIns?.getString(cloudSessionKey);
+      if (raw == null) {
+        return null;
+      }
+      final decoded = json.decode(raw);
+      return decoded is Map<String, Object?> ? decoded : null;
+    } catch (e) {
+      commonPrint.log(
+        'getCloudSession error ${e.toString()}',
+        logLevel: LogLevel.warning,
+      );
+      return null;
+    }
+  }
+
+  Future<void> saveCloudSession(Map<String, Object?> value) async {
+    final sharedPreferencesIns = await _store.value;
+    await sharedPreferencesIns?.setString(cloudSessionKey, json.encode(value));
+  }
+
+  Future<void> clearCloudSession() async {
+    final sharedPreferencesIns = await _store.value;
+    await sharedPreferencesIns?.remove(cloudSessionKey);
+  }
+
+  Future<String?> getCloudServerName() async {
+    final sharedPreferencesIns = await _store.value;
+    return sharedPreferencesIns?.getString(cloudServerKey);
+  }
+
+  Future<void> saveCloudServerName(String name) async {
+    final sharedPreferencesIns = await _store.value;
+    await sharedPreferencesIns?.setString(cloudServerKey, name);
+  }
+
+  Future<String?> getCloudEmail() async {
+    final sharedPreferencesIns = await _store.value;
+    return sharedPreferencesIns?.getString(cloudEmailKey);
+  }
+
+  Future<void> saveCloudEmail(String email) async {
+    final sharedPreferencesIns = await _store.value;
+    await sharedPreferencesIns?.setString(cloudEmailKey, email);
+  }
+
   Future<void> clearPreferences() async {
     final sharedPreferencesIns = await _store.value;
     await sharedPreferencesIns?.clear();

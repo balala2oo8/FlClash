@@ -490,6 +490,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "closeConnections": MessageLookupByLibrary.simpleMessage(
       "Cerrar conexiones",
     ),
+    "cloudSubscription": MessageLookupByLibrary.simpleMessage(
+      "Suscripción en la nube",
+    ),
     "color": MessageLookupByLibrary.simpleMessage("Color"),
     "colorStyle": MessageLookupByLibrary.simpleMessage("Estilo de color"),
     "columns": MessageLookupByLibrary.simpleMessage("Columnas"),
@@ -775,6 +778,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Editor no disponible",
     ),
     "elapsed": MessageLookupByLibrary.simpleMessage("Tardó"),
+    "email": MessageLookupByLibrary.simpleMessage("Correo electrónico"),
     "emptyFallback": MessageLookupByLibrary.simpleMessage(
       "Respaldo si está vacío",
     ),
@@ -1188,6 +1192,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "logcatDesc": MessageLookupByLibrary.simpleMessage(
       "Si desactivas Logcat, se oculta la entrada de registros.",
     ),
+    "loggedIn": MessageLookupByLibrary.simpleMessage("Sesión iniciada"),
+    "login": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
+    "loginExpired": MessageLookupByLibrary.simpleMessage("Sesión caducada"),
+    "loginExpiredDesc": MessageLookupByLibrary.simpleMessage(
+      "La suscripción aún se puede actualizar",
+    ),
+    "loginFailed": MessageLookupByLibrary.simpleMessage(
+      "Error de inicio de sesión",
+    ),
+    "logout": MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
     "logs": MessageLookupByLibrary.simpleMessage("Registros"),
     "logsAndDiagnostics": MessageLookupByLibrary.simpleMessage(
       "Registros y diagnóstico",
@@ -1207,6 +1221,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "maxFailedTimes": MessageLookupByLibrary.simpleMessage("Máximo de fallos"),
     "maxLengthTip": m43,
     "maximize": MessageLookupByLibrary.simpleMessage("Maximizar"),
+    "maybeStale": MessageLookupByLibrary.simpleMessage(
+      "Puede estar desactualizado",
+    ),
     "memoryAppResident": MessageLookupByLibrary.simpleMessage(
       "Memoria residente",
     ),
@@ -1309,6 +1326,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Este recurso externo no es un archivo de texto",
     ),
     "none": MessageLookupByLibrary.simpleMessage("Ninguno"),
+    "notLoggedIn": MessageLookupByLibrary.simpleMessage("Sin iniciar sesión"),
     "notRunning": MessageLookupByLibrary.simpleMessage("Detenido"),
     "notSelectedTip": MessageLookupByLibrary.simpleMessage(
       "No se puede seleccionar el grupo de proxies actual",
@@ -1485,6 +1503,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "releaseMemoryFailed": MessageLookupByLibrary.simpleMessage(
       "No se pudo liberar la memoria",
     ),
+    "relogin": MessageLookupByLibrary.simpleMessage("Volver a iniciar sesión"),
     "remote": MessageLookupByLibrary.simpleMessage("Remoto"),
     "remoteDestination": MessageLookupByLibrary.simpleMessage("Destino remoto"),
     "remoteDnsResolve": MessageLookupByLibrary.simpleMessage(
@@ -1878,6 +1897,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "suspended": MessageLookupByLibrary.simpleMessage("Suspendido…"),
     "switchProfile": MessageLookupByLibrary.simpleMessage("Cambiar de perfil"),
     "sync": MessageLookupByLibrary.simpleMessage("Sincronizar"),
+    "syncNow": MessageLookupByLibrary.simpleMessage("Sincronizar ahora"),
+    "syncSuccess": MessageLookupByLibrary.simpleMessage(
+      "Suscripción sincronizada",
+    ),
     "system": MessageLookupByLibrary.simpleMessage("Sistema"),
     "systemApp": MessageLookupByLibrary.simpleMessage("Apps del sistema"),
     "systemProxy": MessageLookupByLibrary.simpleMessage("Proxy del sistema"),

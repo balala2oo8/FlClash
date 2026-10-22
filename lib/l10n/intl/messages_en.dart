@@ -455,6 +455,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "closeConnections": MessageLookupByLibrary.simpleMessage(
       "Close connections",
     ),
+    "cloudSubscription": MessageLookupByLibrary.simpleMessage(
+      "Cloud subscription",
+    ),
     "color": MessageLookupByLibrary.simpleMessage("Color"),
     "colorStyle": MessageLookupByLibrary.simpleMessage("Color style"),
     "columns": MessageLookupByLibrary.simpleMessage("Columns"),
@@ -732,6 +735,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Editor unavailable",
     ),
     "elapsed": MessageLookupByLibrary.simpleMessage("Took"),
+    "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emptyFallback": MessageLookupByLibrary.simpleMessage("Empty fallback"),
     "emptyTip": m23,
     "en": MessageLookupByLibrary.simpleMessage("English"),
@@ -1113,6 +1117,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "logcatDesc": MessageLookupByLibrary.simpleMessage(
       "Turning off Logcat hides the logs entry.",
     ),
+    "loggedIn": MessageLookupByLibrary.simpleMessage("Signed in"),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "loginExpired": MessageLookupByLibrary.simpleMessage("Login expired"),
+    "loginExpiredDesc": MessageLookupByLibrary.simpleMessage(
+      "The subscription can still be updated",
+    ),
+    "loginFailed": MessageLookupByLibrary.simpleMessage("Login failed"),
+    "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "logs": MessageLookupByLibrary.simpleMessage("Logs"),
     "logsAndDiagnostics": MessageLookupByLibrary.simpleMessage(
       "Logs and diagnostics",
@@ -1126,6 +1138,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "maxFailedTimes": MessageLookupByLibrary.simpleMessage("Max failures"),
     "maxLengthTip": m43,
     "maximize": MessageLookupByLibrary.simpleMessage("Maximize"),
+    "maybeStale": MessageLookupByLibrary.simpleMessage("May be out of date"),
     "memoryAppResident": MessageLookupByLibrary.simpleMessage(
       "Resident memory",
     ),
@@ -1218,6 +1231,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "This external resource is not a text file",
     ),
     "none": MessageLookupByLibrary.simpleMessage("None"),
+    "notLoggedIn": MessageLookupByLibrary.simpleMessage("Not signed in"),
     "notRunning": MessageLookupByLibrary.simpleMessage("Not running"),
     "notSelectedTip": MessageLookupByLibrary.simpleMessage(
       "The current proxy group cannot be selected",
@@ -1382,6 +1396,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "releaseMemoryFailed": MessageLookupByLibrary.simpleMessage(
       "Failed to release memory",
     ),
+    "relogin": MessageLookupByLibrary.simpleMessage("Re-login"),
     "remote": MessageLookupByLibrary.simpleMessage("Remote"),
     "remoteDestination": MessageLookupByLibrary.simpleMessage(
       "Remote destination",
@@ -1747,6 +1762,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "suspended": MessageLookupByLibrary.simpleMessage("Suspended…"),
     "switchProfile": MessageLookupByLibrary.simpleMessage("Switch profile"),
     "sync": MessageLookupByLibrary.simpleMessage("Sync"),
+    "syncNow": MessageLookupByLibrary.simpleMessage("Sync now"),
+    "syncSuccess": MessageLookupByLibrary.simpleMessage("Subscription synced"),
     "system": MessageLookupByLibrary.simpleMessage("System"),
     "systemApp": MessageLookupByLibrary.simpleMessage("System apps"),
     "systemProxy": MessageLookupByLibrary.simpleMessage("System proxy"),

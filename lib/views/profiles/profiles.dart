@@ -317,16 +317,22 @@ class ProfileItem extends ConsumerWidget {
     );
   }
 
-  SubscriptionInfo? get _subscriptionInfo =>
-      profile.type == ProfileType.url ? profile.subscriptionInfo : null;
+  SubscriptionInfo? _subscriptionInfoOf(bool isCloud) {
+    return isCloud || profile.type == ProfileType.url
+        ? profile.subscriptionInfo
+        : null;
+  }
 
-  String _subtitle(BuildContext context) {
-    final info = _subscriptionInfo;
+  String _subtitle(BuildContext context, bool isCloud) {
+    final info = _subscriptionInfoOf(isCloud);
     if (info != null && info.usage != null) {
       final used = info.upload + info.download;
       return '${used.traffic.show} / ${info.total.traffic.show}';
     }
     final appLocalizations = context.appLocalizations;
+    if (isCloud) {
+      return appLocalizations.cloudSubscription;
+    }
     return switch (profile.type) {
       ProfileType.url => appLocalizations.remote,
       ProfileType.file => appLocalizations.local,
@@ -399,6 +405,26 @@ class ProfileItem extends ConsumerWidget {
 
   List<CommonPopupMenuItem> _menuItems(BuildContext context, WidgetRef ref) {
     final appLocalizations = context.appLocalizations;
+    if (ref.watch(isCloudProfileProvider(profile.id))) {
+      return [
+        CommonPopupMenuItem(
+          glyph: AppGlyphs.sync,
+          label: appLocalizations.sync,
+          onPressed: () {
+            final updating = ref.read(updatingKeysProvider.notifier);
+            final operation = updating.start(profile.updatingKey);
+            unawaited(
+              ref
+                  .read(cloudActionProvider.notifier)
+                  .syncNow()
+                  .whenComplete(
+                    () => updating.stop(profile.updatingKey, operation),
+                  ),
+            );
+          },
+        ),
+      ];
+    }
     final isUrl = profile.type == ProfileType.url;
     final isCustom = profile.type == ProfileType.custom;
     return [
@@ -481,7 +507,8 @@ class ProfileItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isUpdating = ref.watch(isUpdatingProvider(profile.updatingKey));
-    final subscriptionInfo = _subscriptionInfo;
+    final isCloud = ref.watch(isCloudProfileProvider(profile.id));
+    final subscriptionInfo = _subscriptionInfoOf(isCloud);
     final isSelected = profile.id == groupValue;
     return ContextMenuRegion(
       menuItems: isUpdating ? null : _menuItems(context, ref),
@@ -510,7 +537,7 @@ class ProfileItem extends ConsumerWidget {
           title: _ProfileCardTitle(
             profile: profile,
             expire: subscriptionInfo?.expireDate,
-            subtitle: _subtitle(context),
+            subtitle: _subtitle(context, isCloud),
           ),
         ),
       ),

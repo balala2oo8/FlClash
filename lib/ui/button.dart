@@ -135,31 +135,45 @@ class TonalButton extends StatelessWidget {
     this.glyph,
     required this.label,
     required this.onPressed,
+    this.color,
+    this.foregroundColor,
   });
 
   final TonalButtonSize size;
   final Glyph? glyph;
   final String label;
   final VoidCallback? onPressed;
+  final Color? color;
+  final Color? foregroundColor;
 
   @override
   Widget build(BuildContext context) {
     final glyph = this.glyph;
     final label = Text(this.label);
+    final foregroundColor = this.foregroundColor;
+    final buttonStyle = foregroundColor == null
+        ? null
+        : FilledButton.styleFrom(foregroundColor: foregroundColor);
     return ElasticPress(
       enabled: onPressed != null,
       child: DecoratedBox(
         decoration: ShapeDecoration(
-          color: context.raisedSurfaceLevel.colorOf(context.colorScheme),
+          color:
+              color ?? context.raisedSurfaceLevel.colorOf(context.colorScheme),
           shape: AppShape.full,
         ),
         child: TonalButtonTheme(
           grouped: true,
           size: size,
           child: glyph == null
-              ? FilledButton(onPressed: onPressed, child: label)
+              ? FilledButton(
+                  onPressed: onPressed,
+                  style: buttonStyle,
+                  child: label,
+                )
               : FilledButton.icon(
                   onPressed: onPressed,
+                  style: buttonStyle,
                   icon: GlyphIcon(glyph, fill: 1),
                   label: label,
                 ),

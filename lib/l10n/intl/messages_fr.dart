@@ -493,6 +493,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "closeConnections": MessageLookupByLibrary.simpleMessage(
       "Fermer les connexions",
     ),
+    "cloudSubscription": MessageLookupByLibrary.simpleMessage(
+      "Abonnement cloud",
+    ),
     "color": MessageLookupByLibrary.simpleMessage("Couleur"),
     "colorStyle": MessageLookupByLibrary.simpleMessage("Style de couleur"),
     "columns": MessageLookupByLibrary.simpleMessage("Colonnes"),
@@ -780,6 +783,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Éditeur indisponible",
     ),
     "elapsed": MessageLookupByLibrary.simpleMessage("Durée"),
+    "email": MessageLookupByLibrary.simpleMessage("E-mail"),
     "emptyFallback": MessageLookupByLibrary.simpleMessage("Repli si vide"),
     "emptyTip": m23,
     "en": MessageLookupByLibrary.simpleMessage("Anglais"),
@@ -1193,6 +1197,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "logcatDesc": MessageLookupByLibrary.simpleMessage(
       "Désactiver Logcat masque l’entrée Journaux.",
     ),
+    "loggedIn": MessageLookupByLibrary.simpleMessage("Connecté"),
+    "login": MessageLookupByLibrary.simpleMessage("Connexion"),
+    "loginExpired": MessageLookupByLibrary.simpleMessage("Session expirée"),
+    "loginExpiredDesc": MessageLookupByLibrary.simpleMessage(
+      "L’abonnement peut toujours être mis à jour",
+    ),
+    "loginFailed": MessageLookupByLibrary.simpleMessage(
+      "Échec de la connexion",
+    ),
+    "logout": MessageLookupByLibrary.simpleMessage("Déconnexion"),
     "logs": MessageLookupByLibrary.simpleMessage("Journaux"),
     "logsAndDiagnostics": MessageLookupByLibrary.simpleMessage(
       "Journaux et diagnostic",
@@ -1210,6 +1224,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "maxFailedTimes": MessageLookupByLibrary.simpleMessage("Échecs maximum"),
     "maxLengthTip": m43,
     "maximize": MessageLookupByLibrary.simpleMessage("Agrandir"),
+    "maybeStale": MessageLookupByLibrary.simpleMessage("Peut être obsolète"),
     "memoryAppResident": MessageLookupByLibrary.simpleMessage(
       "Mémoire résidente",
     ),
@@ -1308,6 +1323,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Cette ressource externe n’est pas un fichier texte",
     ),
     "none": MessageLookupByLibrary.simpleMessage("Aucun"),
+    "notLoggedIn": MessageLookupByLibrary.simpleMessage("Non connecté"),
     "notRunning": MessageLookupByLibrary.simpleMessage("À l’arrêt"),
     "notSelectedTip": MessageLookupByLibrary.simpleMessage(
       "Le groupe de proxys actuel n’est pas sélectionnable",
@@ -1488,6 +1504,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "releaseMemoryFailed": MessageLookupByLibrary.simpleMessage(
       "Échec de la libération de la mémoire",
     ),
+    "relogin": MessageLookupByLibrary.simpleMessage("Se reconnecter"),
     "remote": MessageLookupByLibrary.simpleMessage("Distant"),
     "remoteDestination": MessageLookupByLibrary.simpleMessage(
       "Destination distante",
@@ -1881,6 +1898,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "suspended": MessageLookupByLibrary.simpleMessage("Suspendu…"),
     "switchProfile": MessageLookupByLibrary.simpleMessage("Changer de profil"),
     "sync": MessageLookupByLibrary.simpleMessage("Synchroniser"),
+    "syncNow": MessageLookupByLibrary.simpleMessage("Synchroniser"),
+    "syncSuccess": MessageLookupByLibrary.simpleMessage(
+      "Abonnement synchronisé",
+    ),
     "system": MessageLookupByLibrary.simpleMessage("Système"),
     "systemApp": MessageLookupByLibrary.simpleMessage("Apps système"),
     "systemProxy": MessageLookupByLibrary.simpleMessage("Proxy système"),

@@ -474,6 +474,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "closeConnections": MessageLookupByLibrary.simpleMessage(
       "Закрыть соединения",
     ),
+    "cloudSubscription": MessageLookupByLibrary.simpleMessage(
+      "Облачная подписка",
+    ),
     "color": MessageLookupByLibrary.simpleMessage("Цвет"),
     "colorStyle": MessageLookupByLibrary.simpleMessage("Стиль палитры"),
     "columns": MessageLookupByLibrary.simpleMessage("Столбцы"),
@@ -761,6 +764,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Редактор недоступен",
     ),
     "elapsed": MessageLookupByLibrary.simpleMessage("Время"),
+    "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emptyFallback": MessageLookupByLibrary.simpleMessage(
       "Резерв для пустой группы",
     ),
@@ -1154,6 +1158,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "logcatDesc": MessageLookupByLibrary.simpleMessage(
       "При отключении захвата логов раздел логов скрывается.",
     ),
+    "loggedIn": MessageLookupByLibrary.simpleMessage("Выполнен вход"),
+    "login": MessageLookupByLibrary.simpleMessage("Вход"),
+    "loginExpired": MessageLookupByLibrary.simpleMessage("Сеанс входа истёк"),
+    "loginExpiredDesc": MessageLookupByLibrary.simpleMessage(
+      "Подписка всё ещё обновляется",
+    ),
+    "loginFailed": MessageLookupByLibrary.simpleMessage("Ошибка входа"),
+    "logout": MessageLookupByLibrary.simpleMessage("Выход"),
     "logs": MessageLookupByLibrary.simpleMessage("Логи"),
     "logsAndDiagnostics": MessageLookupByLibrary.simpleMessage(
       "Логи и диагностика",
@@ -1173,6 +1185,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "maxLengthTip": m43,
     "maximize": MessageLookupByLibrary.simpleMessage("Развернуть"),
+    "maybeStale": MessageLookupByLibrary.simpleMessage("Возможно, устарело"),
     "memoryAppResident": MessageLookupByLibrary.simpleMessage(
       "Резидентная память",
     ),
@@ -1273,6 +1286,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Этот внешний ресурс не является текстовым файлом",
     ),
     "none": MessageLookupByLibrary.simpleMessage("Нет"),
+    "notLoggedIn": MessageLookupByLibrary.simpleMessage("Не выполнен вход"),
     "notRunning": MessageLookupByLibrary.simpleMessage("Не запущено"),
     "notSelectedTip": MessageLookupByLibrary.simpleMessage(
       "Текущую группу прокси нельзя выбрать",
@@ -1443,6 +1457,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "releaseMemoryFailed": MessageLookupByLibrary.simpleMessage(
       "Не удалось освободить память",
     ),
+    "relogin": MessageLookupByLibrary.simpleMessage("Войти снова"),
     "remote": MessageLookupByLibrary.simpleMessage("Удалённо"),
     "remoteDestination": MessageLookupByLibrary.simpleMessage(
       "Удалённое назначение",
@@ -1830,6 +1845,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "suspended": MessageLookupByLibrary.simpleMessage("Приостановлено…"),
     "switchProfile": MessageLookupByLibrary.simpleMessage("Сменить профиль"),
     "sync": MessageLookupByLibrary.simpleMessage("Синхронизация"),
+    "syncNow": MessageLookupByLibrary.simpleMessage("Синхронизировать"),
+    "syncSuccess": MessageLookupByLibrary.simpleMessage(
+      "Подписка синхронизирована",
+    ),
     "system": MessageLookupByLibrary.simpleMessage("Система"),
     "systemApp": MessageLookupByLibrary.simpleMessage("Системные приложения"),
     "systemProxy": MessageLookupByLibrary.simpleMessage("Системный прокси"),

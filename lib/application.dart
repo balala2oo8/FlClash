@@ -117,6 +117,7 @@ class ApplicationState extends ConsumerState<Application> {
   void _autoUpdateProfilesTask() {
     _autoUpdateProfilesTaskTimer = Timer(const Duration(minutes: 20), () async {
       await ref.read(profilesActionProvider.notifier).autoUpdateProfiles();
+      unawaited(ref.read(cloudActionProvider.notifier).autoSyncIfDue());
       await ref.read(resourcesActionProvider.notifier).autoUpdate();
       if (!mounted) {
         return;
