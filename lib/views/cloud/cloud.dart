@@ -347,71 +347,81 @@ class _AccountViewState extends ConsumerState<_AccountView> {
     final accountSubtitle = _accountSubtitle(account);
     return CommonScaffold(
       title: appLocalizations.account,
-      body: ListView(
-        padding: EdgeInsets.only(top: context.contentTopPadding, bottom: 16),
+      body: Column(
         children: [
-          if (_session.authExpired)
-            generateSection(
-              items: [
-                ListItem(
-                  leading: GlyphIcon(AppGlyphs.info, color: colorScheme.error),
-                  title: Text(
-                    appLocalizations.loginExpired,
-                    style: TextStyle(color: colorScheme.error),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.only(
+                top: context.contentTopPadding,
+                bottom: 16,
+              ),
+              children: [
+                if (_session.authExpired)
+                  generateSection(
+                    items: [
+                      ListItem(
+                        leading: GlyphIcon(
+                          AppGlyphs.info,
+                          color: colorScheme.error,
+                        ),
+                        title: Text(
+                          appLocalizations.loginExpired,
+                          style: TextStyle(color: colorScheme.error),
+                        ),
+                        subtitle: _session.subscribeUrl.isEmpty
+                            ? null
+                            : Text(appLocalizations.loginExpiredDesc),
+                        trailing: Text(
+                          appLocalizations.relogin,
+                          style: TextStyle(color: colorScheme.primary),
+                        ),
+                        onTap: _handleRelogin,
+                      ),
+                    ],
                   ),
-                  subtitle: _session.subscribeUrl.isEmpty
-                      ? null
-                      : Text(appLocalizations.loginExpiredDesc),
-                  trailing: Text(
-                    appLocalizations.relogin,
-                    style: TextStyle(color: colorScheme.primary),
-                  ),
-                  onTap: _handleRelogin,
+                generateSection(
+                  title: appLocalizations.account,
+                  items: [
+                    ListItem(
+                      leading: const GlyphIcon(AppGlyphs.account),
+                      title: Text(account?.email ?? _session.email),
+                      subtitle: accountSubtitle.isEmpty
+                          ? null
+                          : Text(accountSubtitle),
+                    ),
+                  ],
+                ),
+                generateSection(
+                  title: appLocalizations.cloudSubscription,
+                  items: [
+                    if (profile != null)
+                      ListItem(
+                        leading: const GlyphIcon(AppGlyphs.cloudSync),
+                        title: Text(profile.realLabel),
+                        subtitle: profileSubtitle == null
+                            ? null
+                            : Text(profileSubtitle),
+                      ),
+                    ListItem(
+                      leading: const GlyphIcon(AppGlyphs.sync),
+                      title: Text(appLocalizations.syncNow),
+                      trailing: _syncing
+                          ? const CommonCircleLoading(size: 20)
+                          : null,
+                      onTap: _syncing ? null : _handleSync,
+                    ),
+                  ],
                 ),
               ],
             ),
-          generateSection(
-            title: appLocalizations.account,
-            items: [
-              ListItem(
-                leading: const GlyphIcon(AppGlyphs.account),
-                title: Text(account?.email ?? _session.email),
-                subtitle: accountSubtitle.isEmpty
-                    ? null
-                    : Text(accountSubtitle),
-              ),
-            ],
           ),
-          generateSection(
-            title: appLocalizations.cloudSubscription,
-            items: [
-              if (profile != null)
-                ListItem(
-                  leading: const GlyphIcon(AppGlyphs.cloudSync),
-                  title: Text(profile.realLabel),
-                  subtitle: profileSubtitle == null
-                      ? null
-                      : Text(profileSubtitle),
-                ),
-              ListItem(
-                leading: const GlyphIcon(AppGlyphs.sync),
-                title: Text(appLocalizations.syncNow),
-                trailing: _syncing ? const CommonCircleLoading(size: 20) : null,
-                onTap: _syncing ? null : _handleSync,
-              ),
-            ],
-          ),
-          generateSection(
-            items: [
-              ListItem(
-                leading: GlyphIcon(AppGlyphs.close, color: colorScheme.error),
-                title: Text(
-                  appLocalizations.logout,
-                  style: TextStyle(color: colorScheme.error),
-                ),
-                onTap: _handleLogout,
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.only(bottom: 16 + BottomInsetScope.of(context)),
+            child: TextButton(
+              onPressed: _handleLogout,
+              style: TextButton.styleFrom(foregroundColor: colorScheme.error),
+              child: Text(appLocalizations.logout),
+            ),
           ),
         ],
       ),
