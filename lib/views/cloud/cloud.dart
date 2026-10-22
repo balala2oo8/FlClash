@@ -415,13 +415,21 @@ class _AccountViewState extends ConsumerState<_AccountView> {
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 16 + BottomInsetScope.of(context)),
-            child: TextButton(
-              onPressed: _handleLogout,
-              style: TextButton.styleFrom(foregroundColor: colorScheme.error),
-              child: Text(appLocalizations.logout),
-            ),
+          Builder(
+            builder: (context) {
+              return Padding(
+                padding: EdgeInsets.only(
+                  bottom: 16 + BottomInsetScope.of(context),
+                ),
+                child: TextButton(
+                  onPressed: _handleLogout,
+                  style: TextButton.styleFrom(
+                    foregroundColor: colorScheme.error,
+                  ),
+                  child: Text(appLocalizations.logout),
+                ),
+              );
+            },
           ),
         ],
       ),
