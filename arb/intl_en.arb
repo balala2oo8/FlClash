@@ -140,6 +140,8 @@
   "loginExpiredDesc": "The subscription can still be updated",
   "relogin": "Re-login",
   "maybeStale": "May be out of date",
+  "loadingServers": "Getting servers…",
+  "serversLoadFailed": "Could not get the server list. Tap the server row to retry.",
   "notLoggedIn": "Not signed in",
   "loggedIn": "Signed in",
   "backup": "Backup",

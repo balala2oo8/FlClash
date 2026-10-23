@@ -140,6 +140,8 @@
   "loginExpiredDesc": "L’abonnement peut toujours être mis à jour",
   "relogin": "Se reconnecter",
   "maybeStale": "Peut être obsolète",
+  "loadingServers": "Récupération des serveurs…",
+  "serversLoadFailed": "Impossible de récupérer la liste des serveurs. Touchez la ligne du serveur pour réessayer.",
   "notLoggedIn": "Non connecté",
   "loggedIn": "Connecté",
   "backup": "Sauvegarde",

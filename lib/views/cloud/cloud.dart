@@ -11,7 +11,7 @@ import 'package:fl_clash/widgets/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 
-bool get cloudAccountAvailable => cloudServers.isNotEmpty;
+bool get cloudAccountAvailable => cloudServersUrl.isNotEmpty;
 
 void showCloudAccount(BuildContext context) {
   final rootContext = globalState.navigatorKey.currentContext ?? context;
@@ -50,9 +50,6 @@ class CloudAccountView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (cloudServers.isEmpty) {
-      return const SizedBox.shrink();
-    }
     final session = ref.watch(cloudAuthProvider);
     if (session == null) {
       return const _LoginView();
@@ -72,7 +69,9 @@ class _LoginViewState extends ConsumerState<_LoginView> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _passwordFocusNode = FocusNode();
-  var _server = cloudServers.first;
+  CloudServer? _selectedServer;
+  String? _savedServerName;
+  var _refreshingServers = true;
   var _saving = false;
   String? _error;
 
@@ -81,6 +80,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
     super.initState();
     unawaited(_restoreServer());
     unawaited(_restoreEmail());
+    unawaited(_refreshServers());
   }
 
   Future<void> _restoreEmail() async {
@@ -91,17 +91,55 @@ class _LoginViewState extends ConsumerState<_LoginView> {
     _emailController.text = email;
   }
 
-  Future<void> _restoreServer() async {
-    final name = await preferences.getCloudServerName();
-    if (!mounted || name == null) {
-      return;
+  Future<void> _refreshServers() async {
+    if (!_refreshingServers) {
+      setState(() => _refreshingServers = true);
     }
-    for (final server in cloudServers) {
-      if (server.name == name) {
-        setState(() => _server = server);
+    try {
+      try {
+        await ref.read(cloudServersProvider.future);
+      } catch (_) {
+        // An earlier refresh failed; the attempt below is the retry.
+      }
+      if (!mounted) {
         return;
       }
+      await ref.read(cloudServersProvider.notifier).refresh();
+    } catch (_) {
+      // The cached list stays usable; an empty one offers a retry.
+    } finally {
+      if (mounted) {
+        setState(() => _refreshingServers = false);
+      }
     }
+  }
+
+  Future<void> _restoreServer() async {
+    final name = await preferences.getCloudServerName();
+    if (!mounted || name == null || name.isEmpty) {
+      return;
+    }
+    setState(() => _savedServerName = name);
+  }
+
+  CloudServer? _serverOf(List<CloudServer> servers) {
+    if (servers.isEmpty) {
+      return null;
+    }
+    final selected = _selectedServer;
+    if (selected != null &&
+        servers.any((server) => server.apiBase == selected.apiBase)) {
+      return selected;
+    }
+    final savedName = _savedServerName;
+    if (savedName != null) {
+      for (final server in servers) {
+        if (server.name == savedName) {
+          return server;
+        }
+      }
+    }
+    return servers.first;
   }
 
   @override
@@ -117,13 +155,18 @@ class _LoginViewState extends ConsumerState<_LoginView> {
   }
 
   Future<void> _showServerOptions() async {
+    final servers =
+        ref.read(cloudServersProvider).value ?? const <CloudServer>[];
+    if (servers.isEmpty) {
+      return;
+    }
     final selected = await Navigator.of(context).push<CloudServer>(
       PagedSheetRoute<CloudServer>(
         builder: (context) => SelectionSheet<CloudServer>(
           title: context.appLocalizations.server,
-          sections: const [SelectionSection<CloudServer>(items: cloudServers)],
+          sections: [SelectionSection<CloudServer>(items: servers)],
           labelBuilder: (item) => item.name,
-          selectedOf: (_) => _server,
+          selectedOf: (_) => _serverOf(servers),
           onSelected: (item) => Navigator.of(context).pop(item),
         ),
       ),
@@ -131,7 +174,10 @@ class _LoginViewState extends ConsumerState<_LoginView> {
     if (selected == null || !mounted) {
       return;
     }
-    setState(() => _server = selected);
+    setState(() {
+      _selectedServer = selected;
+      _savedServerName = selected.name;
+    });
     await preferences.saveCloudServerName(selected.name);
   }
 
@@ -154,7 +200,14 @@ class _LoginViewState extends ConsumerState<_LoginView> {
       );
       return;
     }
-    if (_server.apiBase.isEmpty) {
+    final servers =
+        ref.read(cloudServersProvider).value ?? const <CloudServer>[];
+    final server = _serverOf(servers);
+    if (server == null) {
+      setState(() => _error = appLocalizations.serversLoadFailed);
+      return;
+    }
+    if (server.apiBase.isEmpty) {
       setState(
         () => _error = appLocalizations.emptyTip(appLocalizations.address),
       );
@@ -167,7 +220,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
     try {
       await ref
           .read(cloudActionProvider.notifier)
-          .login(_server, email, password);
+          .login(server, email, password);
     } catch (error) {
       if (mounted) {
         setState(
@@ -184,6 +237,13 @@ class _LoginViewState extends ConsumerState<_LoginView> {
   @override
   Widget build(BuildContext context) {
     final appLocalizations = context.appLocalizations;
+    final colorScheme = context.colorScheme;
+    final serversValue = ref.watch(cloudServersProvider);
+    final servers = serversValue.value ?? const <CloudServer>[];
+    final server = _serverOf(servers);
+    final loadingServers = _refreshingServers && servers.isEmpty;
+    final failedServers =
+        !_refreshingServers && servers.isEmpty && serversValue.hasError;
     return FormPage(
       title: appLocalizations.login,
       saveLabel: appLocalizations.login,
@@ -192,14 +252,34 @@ class _LoginViewState extends ConsumerState<_LoginView> {
       onSave: _handleSave,
       children: [
         generateSection(
+          footer: loadingServers
+              ? appLocalizations.loadingServers
+              : failedServers
+              ? appLocalizations.serversLoadFailed
+              : null,
           items: [
             FormRow(
               title: appLocalizations.server,
-              trailing: Text(
-                _server.name,
-                style: AppTextStyle.subheadline.of(context),
-              ),
-              onPressed: _showServerOptions,
+              trailing: loadingServers
+                  ? const CommonCircleLoading(size: 20)
+                  : failedServers
+                  ? Text(
+                      appLocalizations.retry,
+                      style: AppTextStyle.subheadline
+                          .of(context)
+                          .copyWith(color: colorScheme.primary),
+                    )
+                  : Text(
+                      server?.name ?? '',
+                      style: AppTextStyle.subheadline.of(context),
+                    ),
+              onPressed: loadingServers
+                  ? null
+                  : failedServers
+                  ? () => unawaited(_refreshServers())
+                  : server == null
+                  ? null
+                  : () => unawaited(_showServerOptions()),
             ),
             FormRow(
               title: appLocalizations.email,

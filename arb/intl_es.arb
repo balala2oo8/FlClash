@@ -140,6 +140,8 @@
   "loginExpiredDesc": "La suscripción aún se puede actualizar",
   "relogin": "Volver a iniciar sesión",
   "maybeStale": "Puede estar desactualizado",
+  "loadingServers": "Obteniendo servidores…",
+  "serversLoadFailed": "No se pudo obtener la lista de servidores. Toca la fila del servidor para reintentar.",
   "notLoggedIn": "Sin iniciar sesión",
   "loggedIn": "Sesión iniciada",
   "backup": "Copia de seguridad",

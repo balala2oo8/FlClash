@@ -110,6 +110,7 @@ const bootRecordKey = 'boot_record';
 const cloudSessionKey = 'cloud_session';
 const cloudServerKey = 'cloud_server';
 const cloudEmailKey = 'cloud_email';
+const cloudServersKey = 'cloud_servers';
 const defaultSystemDnsFallback = '223.5.5.5';
 const repository = 'chen08209/FlClash';
 const maxMobileWidth = 600;

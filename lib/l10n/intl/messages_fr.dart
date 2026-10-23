@@ -1170,6 +1170,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Connexions en direct",
     ),
     "loading": MessageLookupByLibrary.simpleMessage("Chargement…"),
+    "loadingServers": MessageLookupByLibrary.simpleMessage(
+      "Récupération des serveurs…",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("Local"),
     "localImage": MessageLookupByLibrary.simpleMessage("Image locale"),
     "localNetworkDeniedTip": MessageLookupByLibrary.simpleMessage(
@@ -1757,6 +1760,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "selected": MessageLookupByLibrary.simpleMessage("Sélectionné"),
     "server": MessageLookupByLibrary.simpleMessage("Serveur"),
+    "serversLoadFailed": MessageLookupByLibrary.simpleMessage(
+      "Impossible de récupérer la liste des serveurs. Touchez la ligne du serveur pour réessayer.",
+    ),
     "serviceAbnormalCount": m73,
     "serviceAllAvailable": MessageLookupByLibrary.simpleMessage(
       "Tout est disponible",

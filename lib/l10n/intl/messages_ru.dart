@@ -1133,6 +1133,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Активные соединения",
     ),
     "loading": MessageLookupByLibrary.simpleMessage("Загрузка…"),
+    "loadingServers": MessageLookupByLibrary.simpleMessage(
+      "Получение серверов…",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("Локально"),
     "localImage": MessageLookupByLibrary.simpleMessage("Локальное изображение"),
     "localNetworkDeniedTip": MessageLookupByLibrary.simpleMessage(
@@ -1710,6 +1713,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "selected": MessageLookupByLibrary.simpleMessage("Выбрано"),
     "server": MessageLookupByLibrary.simpleMessage("Сервер"),
+    "serversLoadFailed": MessageLookupByLibrary.simpleMessage(
+      "Не удалось получить список серверов. Нажмите на строку сервера, чтобы повторить.",
+    ),
     "serviceAbnormalCount": m73,
     "serviceAllAvailable": MessageLookupByLibrary.simpleMessage("Все доступны"),
     "serviceAvailable": MessageLookupByLibrary.simpleMessage("Доступен"),

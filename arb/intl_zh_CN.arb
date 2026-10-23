@@ -140,6 +140,8 @@
   "loginExpiredDesc": "订阅仍可更新",
   "relogin": "重新登录",
   "maybeStale": "可能已过时",
+  "loadingServers": "正在获取服务器…",
+  "serversLoadFailed": "获取服务器列表失败，点击服务器行重试",
   "notLoggedIn": "未登录",
   "loggedIn": "已登录",
   "backup": "备份",

@@ -44,7 +44,7 @@ final class CloudAuthProvider
   }
 }
 
-String _$cloudAuthHash() => r'7d62d43997e64bbc33fce805c696c8c2fab75207';
+String _$cloudAuthHash() => r'19433455508d67da2d6d388df6eb727fb186a8e9';
 
 /// The signed-in account, restored from preferences and kept across launches.
 
@@ -59,6 +59,61 @@ abstract class _$CloudAuth extends $Notifier<CloudSession?> {
             as $ClassProviderElement<
               AnyNotifier<CloudSession?, CloudSession?>,
               CloudSession?,
+              Object?,
+              Object?
+            >;
+    return element.handleCreate(ref, build);
+  }
+}
+
+/// The server list the login form offers. The cached copy is ready before the
+/// form asks for a refresh, so a failed refresh still leaves it usable.
+
+@ProviderFor(CloudServers)
+final cloudServersProvider = CloudServersProvider._();
+
+/// The server list the login form offers. The cached copy is ready before the
+/// form asks for a refresh, so a failed refresh still leaves it usable.
+final class CloudServersProvider
+    extends $AsyncNotifierProvider<CloudServers, List<CloudServer>> {
+  /// The server list the login form offers. The cached copy is ready before the
+  /// form asks for a refresh, so a failed refresh still leaves it usable.
+  CloudServersProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'cloudServersProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$cloudServersHash();
+
+  @$internal
+  @override
+  CloudServers create() => CloudServers();
+}
+
+String _$cloudServersHash() => r'68adcbf7360b7c5bcd9fdc5131b44bbb5d2ab8af';
+
+/// The server list the login form offers. The cached copy is ready before the
+/// form asks for a refresh, so a failed refresh still leaves it usable.
+
+abstract class _$CloudServers extends $AsyncNotifier<List<CloudServer>> {
+  FutureOr<List<CloudServer>> build();
+  @$mustCallSuper
+  @override
+  WhenComplete runBuild() {
+    final ref =
+        this.ref as $Ref<AsyncValue<List<CloudServer>>, List<CloudServer>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<List<CloudServer>>, List<CloudServer>>,
+              AsyncValue<List<CloudServer>>,
               Object?,
               Object?
             >;
@@ -193,7 +248,7 @@ final class CloudAccountProvider
   }
 }
 
-String _$cloudAccountHash() => r'58bde21e2abc9d9304288fc9b3f6bbb80242776c';
+String _$cloudAccountHash() => r'cd84f600d9bc32437be6dc6dd6112878e52cddf6';
 
 @ProviderFor(CloudAction)
 final cloudActionProvider = CloudActionProvider._();
@@ -226,7 +281,7 @@ final class CloudActionProvider extends $NotifierProvider<CloudAction, void> {
   }
 }
 
-String _$cloudActionHash() => r'e1621babdd086f86b32878f5cbe9bfeabfb2ab0c';
+String _$cloudActionHash() => r'a5fa70b2e1241efcfaaf62a72b82653df0777598';
 
 abstract class _$CloudAction extends $Notifier<void> {
   void build();

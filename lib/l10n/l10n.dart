@@ -1090,6 +1090,26 @@ class AppLocalizations {
     );
   }
 
+  /// `Getting servers…`
+  String get loadingServers {
+    return Intl.message(
+      'Getting servers…',
+      name: 'loadingServers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not get the server list. Tap the server row to retry.`
+  String get serversLoadFailed {
+    return Intl.message(
+      'Could not get the server list. Tap the server row to retry.',
+      name: 'serversLoadFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Not signed in`
   String get notLoggedIn {
     return Intl.message(

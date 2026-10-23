@@ -936,6 +936,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "liveConnections": MessageLookupByLibrary.simpleMessage("リアルタイム接続"),
     "loading": MessageLookupByLibrary.simpleMessage("読み込み中…"),
+    "loadingServers": MessageLookupByLibrary.simpleMessage("サーバーを取得中…"),
     "local": MessageLookupByLibrary.simpleMessage("ローカル"),
     "localImage": MessageLookupByLibrary.simpleMessage("ローカル画像"),
     "localNetworkDeniedTip": MessageLookupByLibrary.simpleMessage(
@@ -1401,6 +1402,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "selected": MessageLookupByLibrary.simpleMessage("選択済み"),
     "server": MessageLookupByLibrary.simpleMessage("サーバー"),
+    "serversLoadFailed": MessageLookupByLibrary.simpleMessage(
+      "サーバー一覧を取得できませんでした。サーバー行をタップして再試行してください。",
+    ),
     "serviceAbnormalCount": m73,
     "serviceAllAvailable": MessageLookupByLibrary.simpleMessage("すべて利用可能"),
     "serviceAvailable": MessageLookupByLibrary.simpleMessage("利用可能"),

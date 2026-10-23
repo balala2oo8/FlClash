@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:fl_clash/common/common.dart';
 import 'package:fl_clash/enum/enum.dart';
 import 'package:fl_clash/features/cloud/cloud_models.dart';
+import 'package:fl_clash/features/cloud/cloud_servers.dart';
 import 'package:fl_clash/state.dart';
 
 /// A refused request, carrying the message the panel sent so it can be shown.
@@ -190,6 +191,27 @@ class CloudClient {
 
   static int _asInt(Object? value) {
     return value is num ? value.toInt() : 0;
+  }
+}
+
+/// Fetches the public server list the login form offers.
+Future<List<CloudServer>> fetchCloudServers() async {
+  try {
+    final response = await request.dio.get<dynamic>(
+      cloudServersUrl,
+      options: Options(
+        headers: {'User-Agent': globalState.ua},
+        sendTimeout: const Duration(seconds: 10),
+        receiveTimeout: const Duration(seconds: 10),
+      ),
+    );
+    return parseCloudServers(response.data);
+  } catch (error) {
+    commonPrint.log(
+      'getServers failed: ${compactError(error)}',
+      logLevel: LogLevel.warning,
+    );
+    rethrow;
   }
 }
 

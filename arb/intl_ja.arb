@@ -140,6 +140,8 @@
   "loginExpiredDesc": "購読は引き続き更新できます",
   "relogin": "再ログイン",
   "maybeStale": "古い情報の可能性",
+  "loadingServers": "サーバーを取得中…",
+  "serversLoadFailed": "サーバー一覧を取得できませんでした。サーバー行をタップして再試行してください。",
   "notLoggedIn": "未ログイン",
   "loggedIn": "ログイン済み",
   "backup": "バックアップ",

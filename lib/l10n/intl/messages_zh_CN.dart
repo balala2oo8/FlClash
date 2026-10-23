@@ -851,6 +851,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "liveConnections": MessageLookupByLibrary.simpleMessage("实时连接"),
     "loading": MessageLookupByLibrary.simpleMessage("加载中…"),
+    "loadingServers": MessageLookupByLibrary.simpleMessage("正在获取服务器…"),
     "local": MessageLookupByLibrary.simpleMessage("本地"),
     "localImage": MessageLookupByLibrary.simpleMessage("本地图片"),
     "localNetworkDeniedTip": MessageLookupByLibrary.simpleMessage(
@@ -1270,6 +1271,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectSplitStrategy": MessageLookupByLibrary.simpleMessage("请选择分流策略"),
     "selected": MessageLookupByLibrary.simpleMessage("已选择"),
     "server": MessageLookupByLibrary.simpleMessage("服务器"),
+    "serversLoadFailed": MessageLookupByLibrary.simpleMessage(
+      "获取服务器列表失败，点击服务器行重试",
+    ),
     "serviceAbnormalCount": m73,
     "serviceAllAvailable": MessageLookupByLibrary.simpleMessage("全部可用"),
     "serviceAvailable": MessageLookupByLibrary.simpleMessage("可用"),

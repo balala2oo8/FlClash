@@ -42,15 +42,21 @@ class CloudAuth extends _$CloudAuth {
       return;
     }
     var session = CloudSession.fromJson(json);
-    // Sessions saved before server selection existed fall back to the first
-    // configured server, which is the one they were signed in through.
-    if (session != null && session.apiBase.isEmpty && cloudServers.isNotEmpty) {
-      session = session.copyWith(
-        serverName: session.serverName.isEmpty
-            ? cloudServers.first.name
-            : session.serverName,
-        apiBase: cloudServers.first.apiBase,
-      );
+    // Sessions saved before server selection existed fall back to the cached
+    // server list, which is the one they were signed in through.
+    if (session != null && session.apiBase.isEmpty) {
+      final raw = await preferences.getCloudServersCache();
+      final servers = raw == null
+          ? const <CloudServer>[]
+          : parseCloudServers(raw);
+      if (servers.isNotEmpty) {
+        session = session.copyWith(
+          serverName: session.serverName.isEmpty
+              ? servers.first.name
+              : session.serverName,
+          apiBase: servers.first.apiBase,
+        );
+      }
     }
     state = session;
   }
@@ -63,6 +69,35 @@ class CloudAuth extends _$CloudAuth {
   Future<void> clear() async {
     state = null;
     await preferences.clearCloudSession();
+  }
+}
+
+/// The server list the login form offers. The cached copy is ready before the
+/// form asks for a refresh, so a failed refresh still leaves it usable.
+@Riverpod(keepAlive: true)
+class CloudServers extends _$CloudServers {
+  @override
+  Future<List<CloudServer>> build() async {
+    final raw = await preferences.getCloudServersCache();
+    return raw == null ? const [] : parseCloudServers(raw);
+  }
+
+  Future<void> refresh() async {
+    try {
+      final servers = await fetchCloudServers();
+      if (servers.isEmpty) {
+        throw const CloudApiException('The server list is empty');
+      }
+      await preferences.saveCloudServersCache(
+        jsonEncode([for (final server in servers) server.toJson()]),
+      );
+      state = AsyncData(servers);
+    } catch (error, stackTrace) {
+      if (state.value?.isNotEmpty != true) {
+        state = AsyncError(error, stackTrace);
+      }
+      rethrow;
+    }
   }
 }
 
@@ -177,16 +212,8 @@ class CloudAction extends _$CloudAction {
     CloudSubscription? subscription;
     var authExpired = session.authExpired;
 
-    final server = cloudServers
-        .where(
-          (item) =>
-              item.name == session.serverName ||
-              item.apiBase == session.apiBase,
-        )
-        .firstOrNull;
     final subscribeUrl =
-        (server == null ? null : subscribeUrlOf(server, session.token)) ??
-        session.subscribeUrl;
+        subscribeUrlOf(session.apiBase, session.token) ?? session.subscribeUrl;
 
     if (refreshMetadata) {
       try {

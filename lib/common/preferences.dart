@@ -209,6 +209,16 @@ class Preferences {
     await sharedPreferencesIns?.setString(cloudServerKey, name);
   }
 
+  Future<String?> getCloudServersCache() async {
+    final sharedPreferencesIns = await _store.value;
+    return sharedPreferencesIns?.getString(cloudServersKey);
+  }
+
+  Future<void> saveCloudServersCache(String json) async {
+    final sharedPreferencesIns = await _store.value;
+    await sharedPreferencesIns?.setString(cloudServersKey, json);
+  }
+
   Future<String?> getCloudEmail() async {
     final sharedPreferencesIns = await _store.value;
     return sharedPreferencesIns?.getString(cloudEmailKey);

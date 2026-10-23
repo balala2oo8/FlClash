@@ -921,6 +921,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "liveConnections": MessageLookupByLibrary.simpleMessage("실시간 연결"),
     "loading": MessageLookupByLibrary.simpleMessage("로드 중…"),
+    "loadingServers": MessageLookupByLibrary.simpleMessage("서버를 가져오는 중…"),
     "local": MessageLookupByLibrary.simpleMessage("로컬"),
     "localImage": MessageLookupByLibrary.simpleMessage("로컬 이미지"),
     "localNetworkDeniedTip": MessageLookupByLibrary.simpleMessage(
@@ -1374,6 +1375,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectSplitStrategy": MessageLookupByLibrary.simpleMessage("분할 전략을 선택하세요"),
     "selected": MessageLookupByLibrary.simpleMessage("선택됨"),
     "server": MessageLookupByLibrary.simpleMessage("서버"),
+    "serversLoadFailed": MessageLookupByLibrary.simpleMessage(
+      "서버 목록을 가져오지 못했습니다. 서버 행을 눌러 다시 시도하세요.",
+    ),
     "serviceAbnormalCount": m73,
     "serviceAllAvailable": MessageLookupByLibrary.simpleMessage("모두 사용 가능"),
     "serviceAvailable": MessageLookupByLibrary.simpleMessage("사용 가능"),
